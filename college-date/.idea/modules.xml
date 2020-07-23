@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/date-item/date-item.iml" filepath="$PROJECT_DIR$/date-item/date-item.iml" />
+      <module fileurl="file://$PROJECT_DIR$/date-registry/date-registry.iml" filepath="$PROJECT_DIR$/date-registry/date-registry.iml" />
+      <module fileurl="file://$PROJECT_DIR$/date-user/date-user.iml" filepath="$PROJECT_DIR$/date-user/date-user.iml" />
+    </modules>
+  </component>
+</project>
