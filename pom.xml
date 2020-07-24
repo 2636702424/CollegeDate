@@ -22,6 +22,8 @@
         <module>date-school</module>
         <module>date-discussion</module>
         <module>date-common</module>
+        <module>date-gateway</module>
+        <module>date-third-party</module>
     </modules>
 
 </project>

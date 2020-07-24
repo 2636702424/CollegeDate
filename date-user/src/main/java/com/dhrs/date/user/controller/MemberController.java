@@ -55,7 +55,6 @@ public class MemberController {
     @RequestMapping("/save")
     public R save(@RequestBody MemberEntity member){
 		memberService.save(member);
-
         return R.ok();
     }
 

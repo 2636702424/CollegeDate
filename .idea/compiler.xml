@@ -9,7 +9,9 @@
         <module name="date-admin" />
         <module name="date-common" />
         <module name="date-discussion" />
+        <module name="date-gateway" />
         <module name="date-school" />
+        <module name="date-third-party" />
         <module name="date-user" />
         <module name="renren-generator" />
       </profile>
@@ -20,7 +22,9 @@
       <module name="date-admin" options="-parameters" />
       <module name="date-common" options="-parameters" />
       <module name="date-discussion" options="-parameters" />
+      <module name="date-gateway" options="-parameters" />
       <module name="date-school" options="-parameters" />
+      <module name="date-third-party" options="-parameters" />
       <module name="date-user" options="-parameters" />
       <module name="renren-generator" options="-parameters" />
     </option>

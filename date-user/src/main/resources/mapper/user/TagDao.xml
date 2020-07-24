@@ -4,7 +4,7 @@
 <mapper namespace="com.dhrs.date.user.dao.TagDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.dhrs.date.common.entity.TagEntity" id="tagMap">
+    <resultMap type="com.dhrs.date.common.entity.user.TagEntity" id="tagMap">
         <result property="id" column="id"/>
         <result property="name" column="name"/>
     </resultMap>

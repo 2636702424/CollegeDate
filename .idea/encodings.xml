@@ -5,7 +5,9 @@
     <file url="file://$PROJECT_DIR$/date-admin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/date-common" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/date-discussion" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/date-gateway" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/date-school" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/date-third-party" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/date-user" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/renren-generator" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />

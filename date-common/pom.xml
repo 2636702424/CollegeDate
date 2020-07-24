@@ -76,10 +76,10 @@
         </dependency>
 
         <!--&lt;!&ndash;    服务注册/发现&ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>com.alibaba.cloud</groupId>-->
-            <!--<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
 
         <!--&lt;!&ndash;配置中心来做配置管理&ndash;&gt;-->
         <!--<dependency>-->
@@ -121,4 +121,5 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
 </project>
