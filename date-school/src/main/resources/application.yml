@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: date-school
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    gateway:
+      routes:
+        - id: date-user
+          uri: lb://date-user
+          predicates:
+           - Path=/college-date/user/**
+          filters:
+           - RewritePath=/college-date/(?<segment>.*),/$\{segment}
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+server:
+  port: 10000
+
+jwt:
+  config:
+    key: ly
+#    ttl: 3600000
+
