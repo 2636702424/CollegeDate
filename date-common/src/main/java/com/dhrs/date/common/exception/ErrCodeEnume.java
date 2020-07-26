@@ -21,7 +21,8 @@ public enum ErrCodeEnume {
     USER_EXIST_EXCEPTION(15001,"用户已存在"),
     PHONE_EXIST_EXCEPTION(15002,"手机号已存在"),
     SYSTEM_BUSY(15003,"系统繁忙，请稍后再试"),
-    LOGINACCT_PASSWORD_INVAILD_EXCEPTION(15004,"账号密码错误");
+    LOGINACCT_PASSWORD_INVAILD_EXCEPTION(15004,"账号密码错误"),
+    WITHOUT_PERMISSION(15005,"无操作权限");
 
     private int code;
     private String msg;
