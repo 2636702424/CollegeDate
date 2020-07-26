@@ -11,9 +11,26 @@
 
     <artifactId>date-third-party</artifactId>
 
+    <properties>
+        <spring-cloud.version>Hoxton.SR6</spring-cloud.version>
+    </properties>
+
     <dependencies>
+        <dependency>
+            <groupId>cdtu.dhrs</groupId>
+            <artifactId>date-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
 
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
         <!--短信业务 -->
         <dependency>
             <groupId>com.aliyun</groupId>
@@ -33,10 +50,6 @@
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
             <version>1.10</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
     </dependencies>

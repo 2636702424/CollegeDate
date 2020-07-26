@@ -1,5 +1,6 @@
 
 spring:
+
   application:
     name: date-user
   datasource:
@@ -11,6 +12,10 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848
+
+  redis:
+    host: 119.23.49.175
+    password: 986352486
 
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml
@@ -25,3 +30,11 @@ jwt:
     key: ly
 #    ttl: 3600000
 
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            #这里设置理想的超时时间，如下5000ms
+            timeoutInMilliseconds: 5000

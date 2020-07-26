@@ -6,7 +6,7 @@
 	<!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.dhrs.date.common.entity.user.MemberEntity" id="memberMap">
         <result property="id" column="id"/>
-        <result property="username" column="username"/>
+        <result property="realname" column="username"/>
         <result property="password" column="password"/>
         <result property="nickname" column="nickname"/>
         <result property="mobile" column="mobile"/>

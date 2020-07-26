@@ -16,5 +16,16 @@ import java.util.Map;
 public interface MemberService extends IService<MemberEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    int register(String phone);
+
+
+    int save(String phone, String password, String code);
+
+    MemberEntity login(String phone, String password);
+
+    int loginByPhone(String phone);
+
+    MemberEntity loginByPhone(String phone, String code);
 }
 

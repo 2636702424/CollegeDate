@@ -21,7 +21,12 @@ public enum ErrCodeEnume {
     USER_EXIST_EXCEPTION(15001,"用户已存在"),
     PHONE_EXIST_EXCEPTION(15002,"手机号已存在"),
     SYSTEM_BUSY(15003,"系统繁忙，请稍后再试"),
-    LOGINACCT_PASSWORD_INVAILD_EXCEPTION(15004,"账号密码错误");
+    LOGINACCT_PASSWORD_INVAILD_EXCEPTION(15004,"账号密码错误"),
+    PHONE_INVAILD_EXCEPTION(15005,"电话号码错误"),
+    CHECK_CODE_INVAILD_EXCEPTION(15006,"验证码错误"),
+    USER_NOT_EXEIST(150011,"用户不存在"),
+    MESSGAE_SEND_FAIL(15010,"短信未知错误，请重试"),
+    TOKEN_AUTH_FAIL(15020,"令牌过期或错误，请重新登录");
 
     private int code;
     private String msg;
