@@ -3,6 +3,10 @@ server:
 spring:
   application:
     name: date-third
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
 date:
   sms:
     accessKeyId: LTAI4FctpuMr8YWHuXdnXDvi # 你自己的accessKeyId
