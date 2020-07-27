@@ -1,6 +1,8 @@
 package com.dhrs.date.service.impl;
 
-import com.dhrs.date.service.TravelService;
+import com.dhrs.date.service.SchoolService;
+import org.springframework.stereotype.Service;
 
-public class TravelServiceImpl implements TravelService {
+//@Service
+public class TravelServiceImpl  {
 }
