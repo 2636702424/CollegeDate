@@ -13,3 +13,7 @@ date:
     accessKeySecret: AWrBcrVQcIvFWfV7Q18cN27TLOOCzQ # 你自己的AccessKeySecret
     signName: 成工商城 # 签名名称
     verifyCodeTemplate: SMS_178765813 # 模板名称
+  obs:
+    endPoint: https://obs.cn-north-4.myhuaweicloud.com
+    ak: XYGWIZMVBLXGVYDMEWLA
+    sk: TfIv3IuFO8fIF12A2VYP5y2WCdxnLuW5Mhf2vxzb
