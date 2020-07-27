@@ -1,8 +1,8 @@
 package com.dhrs.date.discuss.service;
 
-import com.dhrs.date.discuss.entity.InterestCircle;
+import com.dhrs.date.common.entity.discussion.InterestCircle;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.dhrs.date.discuss.entity.vo.InterestCircleVo;
+import com.dhrs.date.common.entity.discussion.vo.InterestCircleVo;
 
 import java.util.List;
 

@@ -27,5 +27,11 @@ public interface MemberService extends IService<MemberEntity> {
     int loginByPhone(String phone);
 
     MemberEntity loginByPhone(String phone, String code);
+
+    int updateInfoById(String newPassword, String oldPassword, String id);
+
+    int updatePhone(String phone);
+
+    int updatePhoneCheck(String id, String phone, String code);
 }
 

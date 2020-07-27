@@ -1,6 +1,6 @@
 package com.dhrs.date.discuss.mapper;
 
-import com.dhrs.date.discuss.entity.Comment;
+import com.dhrs.date.common.entity.discussion.Comment;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.springframework.stereotype.Repository;
 

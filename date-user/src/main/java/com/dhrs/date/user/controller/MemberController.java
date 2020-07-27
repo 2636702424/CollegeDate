@@ -13,6 +13,7 @@ import com.dhrs.date.common.entity.user.MemberEntity;
 import com.dhrs.date.user.service.MemberService;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -129,13 +130,10 @@ public class MemberController {
     /**
      * 信息
      */
-    @RequestMapping("/info/{id}")
-    public R info(@PathVariable("id") Long id, HttpServletRequest request){
+    @RequestMapping("/guest/info/{id}")
+    public R info(@PathVariable("id") Long id){
 		MemberEntity member = memberService.getById(id);
-//        Claims claims = (Claims) request.getAttribute("claims");
-//        Object user = claims.get("user");
-//        String s = JSON.toJSONString(user);
-//        MemberEntity memberEntity = JSON.parseObject(s, MemberEntity.class);
+        member.setPassword("");
         return R.ok().put("member", member);
     }
 
@@ -145,12 +143,61 @@ public class MemberController {
      * 修改
      */
     @RequestMapping("/update")
-    public R update(@RequestBody MemberEntity member){
-		memberService.updateById(member);
-
+    public R update(@RequestBody MemberEntity member,HttpServletRequest request){
+        member.setPassword(null);
+        member.setMobile(null);
+        member.setAvatar(null);
+        member.setStatus(null);
+        Long uid = JwtUtil.getUserId(request);
+        if(uid.equals(member.getId())) {
+            memberService.updateById(member);
+        }
         return R.ok();
     }
 
+    @RequestMapping("/update/password")
+    public R update(@RequestBody Map<String,String> map,HttpServletRequest request){
+        String newPassword = map.get("new");
+        String oldPassword = map.get("old");
+        String id = map.get("id");
+        String uid = JwtUtil.getUserId(request).toString();
+        if(uid.equals(id)) {
+            int i = memberService.updateInfoById(newPassword, oldPassword, id);
+            if(i!=0) {
+                return R.error(ErrCodeEnume.VAILD_EXCEPTION);
+            }
+        }
+        return R.ok();
+    }
+
+
+    @PostMapping("/update/phone/{phone}")
+    public R updatePhoneSend(@PathVariable String phone,HttpServletRequest request) {
+        int r = memberService.updatePhone(phone);
+        if(r == 1) {
+            return R.error(ErrCodeEnume.PHONE_INVAILD_EXCEPTION);
+        }
+        if(r == 2) {
+            return R.error(ErrCodeEnume.USER_EXIST_EXCEPTION);
+        }
+        if(r == 3) {
+            return R.error(ErrCodeEnume.MESSGAE_SEND_FAIL);
+        }
+        return R.ok();
+    }
+
+    @RequestMapping("/update/phone/check/{phone}/{code}")
+    public R updatePhone(@PathVariable String phone,@PathVariable String code,HttpServletRequest request) {
+        String uid = JwtUtil.getUserId(request).toString();
+        int r = memberService.updatePhoneCheck(uid,phone,code);
+        if(r == 1) {
+            return R.error(ErrCodeEnume.PHONE_INVAILD_EXCEPTION);
+        }
+        if(r == 2) {
+            return R.error(ErrCodeEnume.CHECK_CODE_INVAILD_EXCEPTION);
+        }
+        return R.ok();
+    }
     /**
      * 删除
      */

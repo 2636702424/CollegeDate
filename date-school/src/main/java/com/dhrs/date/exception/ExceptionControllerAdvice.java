@@ -1,17 +1,12 @@
-package com.dhrs.date.user.exception;
+package com.dhrs.date.exception;
 
 
 import com.dhrs.date.common.exception.AuthException;
 import com.dhrs.date.common.exception.ErrCodeEnume;
 import com.dhrs.date.common.utils.R;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @Classname GulimallExceptionControllerAdvice

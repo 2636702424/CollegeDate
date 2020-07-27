@@ -2,7 +2,7 @@ package com.dhrs.date.discuss.controller;
 
 
 import com.dhrs.date.common.utils.R;
-import com.dhrs.date.discuss.entity.CircleSort;
+import com.dhrs.date.common.entity.discussion.CircleSort;
 import com.dhrs.date.discuss.service.CircleSortService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

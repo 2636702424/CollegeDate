@@ -1,7 +1,8 @@
-package com.dhrs.date.user.interceptor;
+package com.dhrs.date.discuss.interceptor;
 
 import com.dhrs.date.common.exception.AuthException;
 import com.dhrs.date.common.utils.JwtUtil;
+
 import io.jsonwebtoken.Claims;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;

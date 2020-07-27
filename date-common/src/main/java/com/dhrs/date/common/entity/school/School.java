@@ -1,7 +1,6 @@
-package com.dhrs.date.pojo;
+package com.dhrs.date.common.entity.school;
 
 import lombok.Data;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
 
@@ -39,5 +38,6 @@ public class School {
     private String img;
     private int freq;//是否开启了高校论坛
     private String urban;//高校所在市区
+
 
 }

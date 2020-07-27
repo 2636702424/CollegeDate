@@ -1,4 +1,4 @@
-package com.dhrs.date.pojo.resp;
+package com.dhrs.date.common.entity.school.resp;
 
 import java.util.List;
 

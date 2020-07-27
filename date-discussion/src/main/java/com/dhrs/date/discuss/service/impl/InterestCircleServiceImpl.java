@@ -1,10 +1,10 @@
 package com.dhrs.date.discuss.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.dhrs.date.discuss.entity.CircleSort;
-import com.dhrs.date.discuss.entity.Discuss;
-import com.dhrs.date.discuss.entity.InterestCircle;
-import com.dhrs.date.discuss.entity.vo.InterestCircleVo;
+import com.dhrs.date.common.entity.discussion.CircleSort;
+import com.dhrs.date.common.entity.discussion.Discuss;
+import com.dhrs.date.common.entity.discussion.InterestCircle;
+import com.dhrs.date.common.entity.discussion.vo.InterestCircleVo;
 import com.dhrs.date.discuss.mapper.CircleSortMapper;
 import com.dhrs.date.discuss.mapper.DiscussMapper;
 import com.dhrs.date.discuss.mapper.InterestCircleMapper;

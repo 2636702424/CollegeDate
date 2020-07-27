@@ -6,10 +6,14 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
 server:
-  port: 9091
+  port: 8002
 mybatis:
-  type-aliases-package: com.dhrs.date.pojo
+  type-aliases-package: com.dhrs.date.common.entity.school
   #   驼峰命名
   configuration:
     map-underscore-to-camel-case: true

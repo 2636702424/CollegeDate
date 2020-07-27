@@ -1,10 +1,8 @@
 package com.dhrs.date.service;
 
 //import com.dhrs.date.common.entity.user.MemberEntity;
-import com.dhrs.date.pojo.School;
-import com.dhrs.date.pojo.resp.PageResult;
-
-import java.util.List;
+import com.dhrs.date.common.entity.school.School;
+import com.dhrs.date.common.entity.school.resp.PageResult;
 
 public interface SchoolService {
 

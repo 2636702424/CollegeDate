@@ -1,4 +1,4 @@
-package com.dhrs.date.user.exception;
+package com.dhrs.date.common.exception;
 
 /**
  * @Classname AuthException

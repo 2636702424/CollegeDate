@@ -33,6 +33,7 @@ public class MemberEntity implements Serializable {
 	/**
 	 * 
 	 */
+
 	private String password;
 	/**
 	 * 

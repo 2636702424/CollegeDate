@@ -1,6 +1,6 @@
 package com.dhrs.date.mapper;
 
-import com.dhrs.date.pojo.School;
+import com.dhrs.date.common.entity.school.School;
 import org.apache.ibatis.annotations.Select;
 import tk.mybatis.mapper.common.Mapper;
 

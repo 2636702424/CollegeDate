@@ -1,11 +1,10 @@
 package com.dhrs.date.controller;
 
-import com.dhrs.date.pojo.School;
-import com.dhrs.date.pojo.resp.PageResult;
+import com.dhrs.date.common.entity.school.School;
+import com.dhrs.date.common.entity.school.resp.PageResult;
 import com.dhrs.date.service.impl.SchoolServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

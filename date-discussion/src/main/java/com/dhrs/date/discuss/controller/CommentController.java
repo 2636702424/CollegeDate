@@ -2,12 +2,9 @@ package com.dhrs.date.discuss.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dhrs.date.common.exception.ErrCodeEnume;
 import com.dhrs.date.common.utils.R;
-import com.dhrs.date.discuss.entity.Comment;
-import com.dhrs.date.discuss.entity.Discuss;
-import com.dhrs.date.discuss.entity.InterestCircle;
+import com.dhrs.date.common.entity.discussion.Comment;
 import com.dhrs.date.discuss.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

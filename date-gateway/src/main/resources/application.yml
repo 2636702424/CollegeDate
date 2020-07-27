@@ -15,6 +15,20 @@ spring:
           filters:
            - RewritePath=/college-date/(?<segment>.*),/$\{segment}
 
+        - id: date-user
+          uri: lb://date-discussion
+          predicates:
+           - Path=/college-date/discuss/**
+          filters:
+           - RewritePath=/college-date/(?<segment>.*),/$\{segment}
+
+        - id: date-user
+          uri: lb://date-school
+          predicates:
+           - Path=/college-date/school/**
+          filters:
+           - RewritePath=/college-date/(?<segment>.*),/$\{segment}
+
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml
   global-config:

@@ -1,8 +1,7 @@
 package com.dhrs.date.discuss.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.dhrs.date.discuss.entity.Comment;
-import com.dhrs.date.discuss.entity.Discuss;
+import com.dhrs.date.common.entity.discussion.Comment;
 import com.dhrs.date.discuss.mapper.CommentMapper;
 import com.dhrs.date.discuss.service.CommentService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

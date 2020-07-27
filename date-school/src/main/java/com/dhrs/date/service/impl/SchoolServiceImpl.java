@@ -1,8 +1,8 @@
 package com.dhrs.date.service.impl;
 
+import com.dhrs.date.common.entity.school.School;
 import com.dhrs.date.mapper.SchoolMapper;
-import com.dhrs.date.pojo.School;
-import com.dhrs.date.pojo.resp.PageResult;
+import com.dhrs.date.common.entity.school.resp.PageResult;
 import com.dhrs.date.service.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

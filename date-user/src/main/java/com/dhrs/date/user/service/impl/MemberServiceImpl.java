@@ -91,6 +91,8 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
         }
         MemberEntity memberEntity = new MemberEntity();
         memberEntity.setMobile(phone);
+        memberEntity.setGender(0);
+        memberEntity.setStatus(0);
         memberEntity.setPassword(new BCryptPasswordEncoder().encode(password));
         save(memberEntity);
         //删除验证码，防止重复注册
@@ -158,7 +160,74 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
         return user;
     }
 
-    private static int checkPassword(String password) {
+    @Override
+    public int updateInfoById(String newPassword, String oldPassword, String id) {
+        MemberEntity memberEntity = this.getById(id);
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        boolean matches = encoder.matches(oldPassword, memberEntity.getPassword());
+        if (matches) {
+            //检验新的密码是否合格
+            int i = checkPassword(newPassword);
+            if(i!=0) {
+                return 2;
+            }
+            memberEntity.setPassword(encoder.encode(newPassword));
+            updateById(memberEntity);
+            return 0;
+        }else {
+            return 1;
+        }
+
+    }
+
+    @Override
+    public int updatePhone(String phone) {
+        int i = checkPhone(phone);
+        if(i!=0) {
+            return 1;
+        }
+        MemberEntity mobile = this.getOne(new QueryWrapper<MemberEntity>().eq("mobile", phone));
+        if(mobile!=null) {
+            //用户已经注册
+            return 2;
+        }
+        Long expire = redisTemplate.opsForValue().getOperations().getExpire(SmsConstant.SMS_UPDATE_PHONE_PREFIX+phone,TimeUnit.SECONDS);
+        if(expire<=240) {
+            String s = StringUtils.leftPad(new Random().nextInt(100000) + "", 5, "0");
+            R smsRes = smsFeign.sendVerifyCode(phone, s);
+            if(smsRes.getCode()!=0) {
+                return 3;
+            }
+            redisTemplate.opsForValue().set(SmsConstant.SMS_UPDATE_PHONE_PREFIX+phone,s,5, TimeUnit.MINUTES);
+        }
+        return 0;
+    }
+
+    @Override
+    public int updatePhoneCheck(String id, String phone,String code) {
+        int r = checkPhone(phone);
+        MemberEntity memberEntity = new MemberEntity();
+        if(r!=0) {
+            //手机号错误
+            return 1;
+        }
+        String redisCode = redisTemplate.opsForValue().get(SmsConstant.SMS_UPDATE_PHONE_PREFIX + phone);
+        if(StringUtils.isEmpty(redisCode) || !redisCode.equals(code)) {
+            //验证码错误
+            return 2;
+        }
+        MemberEntity user = getById(Long.valueOf(id));
+        if(user!=null) {
+            user.setMobile(phone);
+            updateById(user);
+        }
+        //删除验证码
+        redisTemplate.delete(SmsConstant.SMS_UPDATE_PHONE_PREFIX+phone);
+        return 0;
+    }
+
+
+    private  int checkPassword(String password) {
         password.replace(""," ");
 //        判断密码是否包含数字：包含返回1，不包含返回0
         int i = password.matches(".*\\d+.*") ? 1 : 0;

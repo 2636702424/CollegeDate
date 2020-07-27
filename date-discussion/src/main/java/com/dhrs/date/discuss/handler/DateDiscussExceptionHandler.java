@@ -1,5 +1,6 @@
 package com.dhrs.date.discuss.handler;
 
+import com.dhrs.date.common.exception.AuthException;
 import com.dhrs.date.common.exception.ErrCodeEnume;
 import com.dhrs.date.common.utils.R;
 import com.dhrs.date.discuss.exception.DateDiscussException;
@@ -21,6 +22,10 @@ public class DateDiscussExceptionHandler {
     public R error(Exception e){
         e.printStackTrace();
         return R.error(ErrCodeEnume.UNKNOW_EXCEPTION);
+    }
+    @ExceptionHandler(AuthException.class)
+    public R authException(AuthException e) {
+        return R.error(ErrCodeEnume.TOKEN_AUTH_FAIL);
     }
 
     @ExceptionHandler(DateDiscussException.class)

@@ -1,10 +1,9 @@
-package com.dhrs.date.discuss.entity.vo;
+package com.dhrs.date.common.entity.discussion.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**

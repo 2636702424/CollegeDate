@@ -3,6 +3,10 @@ server:
   port: 8001
 # 服务名
 spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
   application:
     name: date-discussion
   # 环境设置：dev、test、prod
@@ -21,6 +25,7 @@ spring:
 
 
   #mybatis日志
+
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

@@ -1,6 +1,6 @@
 package com.dhrs.date.discuss.service;
 
-import com.dhrs.date.discuss.entity.Reply;
+import com.dhrs.date.common.entity.discussion.Reply;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;

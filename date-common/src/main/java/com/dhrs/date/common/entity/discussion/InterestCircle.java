@@ -1,4 +1,4 @@
-package com.dhrs.date.discuss.entity;
+package com.dhrs.date.common.entity.discussion;
 
 import com.baomidou.mybatisplus.annotation.*;
 
@@ -14,56 +14,57 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author zxq
- * @since 2020-07-25
+ * @since 2020-07-26
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("clg_discuss")
-public class Discuss implements Serializable {
+@TableName("clg_interest_circle")
+public class InterestCircle implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 话题id
+     * 兴趣圈id
      */
     @TableId(value = "id", type = IdType.ID_WORKER_STR)
     private String id;
 
     /**
-     * 标题
+     * 圈名称
      */
-    private String headline;
+    private String circleName;
 
     /**
-     * 具体内容
+     * 兴趣圈图标
      */
-    private String content;
+    private String avatar;
 
     /**
-     * 点赞数量
+     * 关注该圈的用户数量
      */
-    private Long likes;
+    private Long fansNum;
 
     /**
-     * 回复数量
+     * 该圈发布的话题数量
      */
-    private Long reply;
+    private Long discussNum;
 
     /**
-     * 浏览数量
+     * 兴趣圈简介
      */
-    private Long browse;
+    private String comment;
 
     /**
-     * 兴趣圈id(0表示在讨论区发表话题)
-     */
-    private String interestId;
-
-    /**
-     * 用户id
+     * 创建兴趣圈的用户id
      */
     private Long uid;
+
+    /**
+     * 兴趣圈类型id
+     */
+    private String sortId;
+
 
     /**
      * 发布时间

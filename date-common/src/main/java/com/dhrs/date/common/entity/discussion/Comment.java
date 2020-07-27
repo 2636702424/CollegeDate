@@ -1,4 +1,4 @@
-package com.dhrs.date.discuss.entity;
+package com.dhrs.date.common.entity.discussion;
 
 import com.baomidou.mybatisplus.annotation.*;
 
@@ -19,22 +19,36 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("clg_circle_sort")
-public class CircleSort implements Serializable {
+@TableName("clg_comment")
+public class Comment implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 分类id
+     * 评论id
      */
     @TableId(value = "id", type = IdType.ID_WORKER_STR)
     private String id;
 
     /**
-     * 类型名称
+     * 评论内容
      */
-    private String name;
+    private String content;
 
+    /**
+     * 点赞数量
+     */
+    private Long likes;
+
+    /**
+     * 用户id
+     */
+    private Long uid;
+
+    /**
+     * 讨论id
+     */
+    private String discussId;
 
     /**
      * 发布时间

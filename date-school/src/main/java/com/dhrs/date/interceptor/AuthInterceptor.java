@@ -1,4 +1,4 @@
-package com.dhrs.date.user.interceptor;
+package com.dhrs.date.interceptor;
 
 import com.dhrs.date.common.exception.AuthException;
 import com.dhrs.date.common.utils.JwtUtil;

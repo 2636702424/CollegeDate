@@ -1,6 +1,6 @@
 package com.dhrs.date.discuss.mapper;
 
-import com.dhrs.date.discuss.entity.CircleSort;
+import com.dhrs.date.common.entity.discussion.CircleSort;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.springframework.stereotype.Repository;
 

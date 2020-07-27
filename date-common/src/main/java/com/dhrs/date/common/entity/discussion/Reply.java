@@ -1,4 +1,4 @@
-package com.dhrs.date.discuss.entity;
+package com.dhrs.date.common.entity.discussion;
 
 import com.baomidou.mybatisplus.annotation.*;
 
@@ -19,26 +19,26 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("clg_comment")
-public class Comment implements Serializable {
+@TableName("clg_reply")
+public class Reply implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 评论id
+     * 回复id
      */
     @TableId(value = "id", type = IdType.ID_WORKER_STR)
     private String id;
 
     /**
-     * 评论内容
+     * 回复内容
      */
     private String content;
 
     /**
-     * 点赞数量
+     * 讨论话题id
      */
-    private Long likes;
+    private String commentId;
 
     /**
      * 用户id
@@ -46,9 +46,9 @@ public class Comment implements Serializable {
     private Long uid;
 
     /**
-     * 讨论id
+     * 父级回复id(0表示是一级回复)
      */
-    private String discussId;
+    private String parentId;
 
     /**
      * 发布时间

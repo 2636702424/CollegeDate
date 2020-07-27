@@ -10,5 +10,6 @@ public class JwtConstant {
 
     public static final String KEY = "ly";
 
-    public static final int TTL = 3600000;
+    // 1000 * 60 * 60 1小时
+    public static final int TTL = 3600000*24*7;
 }

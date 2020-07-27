@@ -11,4 +11,5 @@ public class SmsConstant {
     public static final String SMS_REGISTER_PREFIX = "register_";
 
     public static final String SMS_LOGIN_PREFIX = "login_";
+    public static final String SMS_UPDATE_PHONE_PREFIX = "update_phone_";
 }
