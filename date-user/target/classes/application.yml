@@ -11,7 +11,10 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: localhost:8848
+        server-addr: 119.23.49.175:8848
+  servlet:
+    multipart:
+      max-file-size: 10MB
 
   redis:
     host: 119.23.49.175
@@ -38,3 +41,11 @@ hystrix:
           thread:
             #这里设置理想的超时时间，如下5000ms
             timeoutInMilliseconds: 5000
+
+#图片上传调整超时时间为10s
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 10000

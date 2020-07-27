@@ -1,8 +1,8 @@
 package com.dhrs.date.obs.service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.dhrs.date.common.entity.thirdparty.response.ObsResult;
 import com.dhrs.date.obs.config.ObsProperties;
-import com.dhrs.date.obs.response.ObsResult;
 import com.obs.services.ObsClient;
 import com.obs.services.model.PutObjectResult;
 import org.slf4j.Logger;
@@ -35,7 +35,7 @@ public class ObsService {
      * @param file
      * @return
      */
-    public ObsResult upload(MultipartFile file)
+    public ObsResult upload(MultipartFile file,String fileName)
     {
 
         String contype=file.getContentType();
@@ -43,13 +43,13 @@ public class ObsService {
         String sub=originalFilename.substring(originalFilename.lastIndexOf("."),originalFilename.length());
         if(!CONTENT_TYPES.contains(contype))
         {
-            LOGGER.info("文件类型出错"+originalFilename);
+            LOGGER.error("文件类型出错"+originalFilename);
             return null;
         }
         try {
             BufferedImage bufferedImage = ImageIO.read(file.getInputStream());
             if (bufferedImage == null) {
-                LOGGER.info("文件内容不合法" + originalFilename);
+                LOGGER.error("文件内容不合法" + originalFilename);
                 return null;
             }
         }catch (IOException e)
@@ -62,7 +62,8 @@ public class ObsService {
         ObsClient obsClient = null;
         try{
             //获取图片名称，作为上传文件名参数
-            String objectKey = file.getOriginalFilename();
+//            String objectKey = file.getOriginalFilename();
+            String objectKey = fileName;
             //获取流对象
             in= file.getInputStream();
             // 创建ObsClient实例
@@ -71,10 +72,7 @@ public class ObsService {
             PutObjectResult putObjectResult = obsClient.putObject("college-date", objectKey, in);
             //将图片信息封装起来，方便前端回显调用
             String url=putObjectResult.getObjectUrl();
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("name", objectKey);
-            jsonObject.put("url", url);
-            return new ObsResult("文件上传成功!",jsonObject);
+            return new ObsResult(objectKey,url);
         }catch (IOException e)
         {
             e.printStackTrace();

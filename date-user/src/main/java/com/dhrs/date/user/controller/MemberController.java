@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.dhrs.date.common.entity.thirdparty.response.ObsResult;
 import com.dhrs.date.common.exception.ErrCodeEnume;
 import com.dhrs.date.common.utils.JwtUtil;
 import com.dhrs.date.common.utils.PageUtils;
@@ -15,6 +16,7 @@ import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -32,6 +34,16 @@ public class MemberController {
     @Autowired
     private MemberService memberService;
 
+
+    @PostMapping("/update/avatar")
+    public R updateAvatar(MultipartFile file, HttpServletRequest request) {
+        Long uid = JwtUtil.getUserId(request);
+        ObsResult obsResult = memberService.updateAvatar(file, uid);
+        if(obsResult == null) {
+            return R.error(ErrCodeEnume.USER_EXIST_EXCEPTION);
+        }
+        return R.ok().put("data",obsResult);
+    }
     /**
      * 列表
      */

@@ -1,13 +1,17 @@
 package com.dhrs.date.user.service.impl;
 
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.dhrs.date.common.constant.SmsConstant;
+import com.dhrs.date.common.entity.thirdparty.response.ObsResult;
 import com.dhrs.date.common.utils.PageUtils;
 import com.dhrs.date.common.utils.Query;
 import com.dhrs.date.common.utils.R;
 import com.dhrs.date.user.dao.MemberDao;
 import com.dhrs.date.common.entity.user.MemberEntity;
-import com.dhrs.date.user.feign.SmsFeign;
+import com.dhrs.date.user.feign.ThirdPartyFeign;
 import com.dhrs.date.user.service.MemberService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +27,8 @@ import java.util.regex.Pattern;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Service("memberService")
@@ -32,9 +38,10 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
     StringRedisTemplate redisTemplate;
 
     @Autowired
-    SmsFeign smsFeign;
+    ThirdPartyFeign thirdPartyFeign;
 
 
+    private static final String AVATAR_PREFIX = "avatar_";
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -63,7 +70,7 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
         Long expire = redisTemplate.opsForValue().getOperations().getExpire(SmsConstant.SMS_REGISTER_PREFIX+phone,TimeUnit.SECONDS);
         if(expire<=240) {
             String s = StringUtils.leftPad(new Random().nextInt(100000) + "", 5, "0");
-            R smsRes = smsFeign.sendVerifyCode(phone, s);
+            R smsRes = thirdPartyFeign.sendVerifyCode(phone, s);
             if(smsRes.getCode()!=0) {
                 return 3;
             }
@@ -130,7 +137,7 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
         Long expire = redisTemplate.opsForValue().getOperations().getExpire(SmsConstant.SMS_LOGIN_PREFIX+phone,TimeUnit.SECONDS);
         if(expire<=240) {
             String s = StringUtils.leftPad(new Random().nextInt(100000) + "", 5, "0");
-            R smsRes = smsFeign.sendVerifyCode(phone, s);
+            R smsRes = thirdPartyFeign.sendVerifyCode(phone, s);
             if(smsRes.getCode()!=0) {
                 return 3;
             }
@@ -194,7 +201,7 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
         Long expire = redisTemplate.opsForValue().getOperations().getExpire(SmsConstant.SMS_UPDATE_PHONE_PREFIX+phone,TimeUnit.SECONDS);
         if(expire<=240) {
             String s = StringUtils.leftPad(new Random().nextInt(100000) + "", 5, "0");
-            R smsRes = smsFeign.sendVerifyCode(phone, s);
+            R smsRes = thirdPartyFeign.sendVerifyCode(phone, s);
             if(smsRes.getCode()!=0) {
                 return 3;
             }
@@ -224,6 +231,24 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
         //删除验证码
         redisTemplate.delete(SmsConstant.SMS_UPDATE_PHONE_PREFIX+phone);
         return 0;
+    }
+
+    @Override
+    public ObsResult updateAvatar( MultipartFile file, Long uid) {
+        long size = file.getSize();
+        //限制5MB以内
+        if(size>1024*1024*5) {
+            return null;
+        }
+        R r = thirdPartyFeign.uploadImage(file, AVATAR_PREFIX + uid);
+        ObsResult data =  r.getDataByType(ObsResult.class);
+        if(data!= null) {
+            MemberEntity user = getById(uid);
+            user.setAvatar(data.getUrl());
+            updateById(user);
+            return data;
+        }
+        return null;
     }
 
 

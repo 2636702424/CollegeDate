@@ -6,7 +6,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: localhost:8848
+        server-addr: 119.23.49.175:8848
 date:
   sms:
     accessKeyId: LTAI4FctpuMr8YWHuXdnXDvi # 你自己的accessKeyId

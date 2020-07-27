@@ -6,7 +6,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: localhost:8848
+        server-addr: 119.23.49.175:8848
   application:
     name: date-discussion
   # 环境设置：dev、test、prod

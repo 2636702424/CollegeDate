@@ -26,6 +26,7 @@ public enum ErrCodeEnume {
     USER_NOT_EXEIST(15011,"用户不存在"),
     MESSGAE_SEND_FAIL(15010,"短信未知错误，请重试"),
     TOKEN_AUTH_FAIL(15020,"令牌过期或错误，请重新登录"),
+    FILE_UPLOAD_FILE(15030,"文件上传失败"),
     WITHOUT_PERMISSION(15021,"无操作权限");
 
     private int code;

@@ -1,8 +1,10 @@
 package com.dhrs.date.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.dhrs.date.common.entity.thirdparty.response.ObsResult;
 import com.dhrs.date.common.utils.PageUtils;
 import com.dhrs.date.common.entity.user.MemberEntity;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 
@@ -33,5 +35,7 @@ public interface MemberService extends IService<MemberEntity> {
     int updatePhone(String phone);
 
     int updatePhoneCheck(String id, String phone, String code);
+
+    ObsResult updateAvatar(MultipartFile file, Long uid);
 }
 

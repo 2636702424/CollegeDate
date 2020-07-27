@@ -8,6 +8,9 @@
 
 package com.dhrs.date.common.utils;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.dhrs.date.common.exception.ErrCodeEnume;
 import org.apache.http.HttpStatus;
 
@@ -22,7 +25,8 @@ import java.util.Map;
 public class R extends HashMap<String, Object> {
 	private static final long serialVersionUID = 1L;
 
-	public R() {
+
+    public R() {
 		put("code", 0);
 		put("msg", "success");
 	}
@@ -62,4 +66,17 @@ public class R extends HashMap<String, Object> {
 		return (Integer) this.get("code");
 	}
 
+	public  <T> T  getDataByType(String key){
+		Object data = get(key);
+		String jsonString = JSON.toJSONString(data);
+		T t = JSON.parseObject(jsonString, new TypeReference<T>(){});
+		return t;
+	}
+
+	public <T> T  getDataByType(Class<T> classz){
+		Object data = get("data");
+		String jsonString = JSON.toJSONString(data);
+		T t = JSON.parseObject(jsonString, classz);
+		return t;
+	}
 }

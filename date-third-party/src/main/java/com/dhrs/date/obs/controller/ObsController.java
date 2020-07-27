@@ -1,14 +1,14 @@
 package com.dhrs.date.obs.controller;
 
-import com.dhrs.date.obs.response.ObsResult;
+import com.dhrs.date.common.entity.thirdparty.response.ObsResult;
+import com.dhrs.date.common.exception.ErrCodeEnume;
+import com.dhrs.date.common.utils.R;
 import com.dhrs.date.obs.service.ObsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
@@ -18,14 +18,13 @@ public class ObsController {
     @Autowired
     private ObsService obsService;
 
-    @PostMapping("image")
-    public ResponseEntity<ObsResult> UploadImage(@RequestParam("file") MultipartFile file)
-        {
-            ObsResult result = obsService.upload(file);
-            if(StringUtils.isEmpty(result))
-        {
-            return ResponseEntity.badRequest().build();
+    @PostMapping(value = "image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public R uploadImage(@RequestPart(value = "file") MultipartFile file, @RequestParam("fileName") String fileName) {
+        ObsResult result = obsService.upload(file,fileName);
+        if(StringUtils.isEmpty(result)) {
+            return R.error(ErrCodeEnume.FILE_UPLOAD_FILE);
         }
-        return ResponseEntity.ok(result);
+        System.out.println(result);
+        return R.ok().put("data",result);
     }
 }
