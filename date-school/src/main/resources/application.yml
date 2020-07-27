@@ -17,3 +17,12 @@ mybatis:
   #   驼峰命名
   configuration:
     map-underscore-to-camel-case: true
+
+
+#图片上传调整超时时间为10s
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 10000
